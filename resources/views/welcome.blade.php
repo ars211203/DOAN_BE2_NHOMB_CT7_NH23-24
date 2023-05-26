@@ -46,7 +46,11 @@
   <section id="hero">
     <div class="hero container">
       <div>
-        <h1>Xin chào {{Auth::id()}},<span></span></h1>
+        <h1>Xin chào 
+        @if(Auth::check())
+            {{ Auth::user()->user_fullname }}
+        @endif
+          ,<span></span></h1>
         <h1>Chào mừng bạn đến với<span></span></h1>
         <h1>Readook <span></span></h1>
         <div class="newlatter">

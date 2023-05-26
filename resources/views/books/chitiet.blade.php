@@ -7,16 +7,16 @@
     <form action="{{ route('books.follow') }}" method="post">
     @csrf
     <input type="hidden" name="book_id" value="{{ $book->id }}">
-    <button type="submit"><i class="fa-solid fa-plus"></i></button>
+    <button type="submit"><i class="fa-solid fa-eye"></i></button>
     </form>
     @else
     <form action="{{ route('unfollow',$book->id) }}" method="post">
     @csrf
     <input type="hidden" name="book_id" value="{{ $book->id }}">
-    <button type="submit"><i class="fa-solid fa-xmark"></i></button>
+    <button type="submit"><i class="fa-solid fa-eye-slash"></i></button>
     </form>
     @endif
-    </a></h1>
+    </a></h1>   
     @foreach ($Section as $data)
     <details open>
       <summary>{{$data->sections_name}}</summary>
@@ -74,7 +74,7 @@
             <tbody>
             @foreach ($reviews as $rating)
                     <tr>
-                        <td>{{ $rating->user->id }}</td>
+                        <td>{{ $rating->user->user_fullname }}</td>
                         <td>{{ $rating->rating }}</td>
                         <td>{{ $rating->comment }}</td>
                         <td>{{ $rating->created_at }}</td>
