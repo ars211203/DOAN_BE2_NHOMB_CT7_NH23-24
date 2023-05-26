@@ -30,6 +30,7 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+
         $data = $request->all();
         Categories::create($data);
         return redirect()->route('list.categories')->with('thongbao', 'Thêm thành công');

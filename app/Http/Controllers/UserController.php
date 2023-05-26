@@ -31,6 +31,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'user_fullname' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+            'user_image' => 'required',
+        ]);
         $data = $request->all();
         if ($request->hasFile('user_image')) {
             $destination_path = 'public/images/users';
@@ -43,8 +49,6 @@ class UserController extends Controller
             'user_fullname' => $data['user_fullname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-      //      'user_type' => $data['user_type'],
-       //     'user_version' => $data['user_version'],
             'user_image' => $data['user_image'], //image
         ]);
         return redirect()->route('list.user')->with('thongbao', 'Thêm người dùng thành công');

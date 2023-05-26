@@ -32,8 +32,16 @@ class BooksController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    
     public function store(Request $request)
     {
+        $request->validate([
+            'book_name' => 'required|string|max:255',
+            'book_image' => 'required|string|max:255',
+            'book_author' => 'required|string|max:255',
+            'book_source' => 'required|string|max:255',
+            'book_description' => 'required|string|max:255',
+        ]);
         $data = $request->all();
         if ($request->hasFile('book_image')) {
             $destination_path = 'public/images/books';

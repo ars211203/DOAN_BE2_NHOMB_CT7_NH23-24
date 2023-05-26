@@ -32,6 +32,10 @@ class SectionController extends Controller
      */
     public function store(Request $request, $book_id)
     {
+        $request->validate([
+            'sections_name' => 'required',
+            'sections_content' => 'required',
+        ]);
         $sections = new Section($request->all());
         $sections->book_id = $book_id;
         $sections->save();
