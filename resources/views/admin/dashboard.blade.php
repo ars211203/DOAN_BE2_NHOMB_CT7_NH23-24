@@ -10,6 +10,7 @@
     href="{{ asset('css/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet"
       href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+      <link rel="stylesheet" href="{{asset('css/admin.css')}}">
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/OverlayScrollbars.min.css')}}">
   </head>
@@ -302,20 +303,7 @@
 
       <div class="content-wrapper"> 
       @yield('content')
-        </div>
-
-
-
-
-
-
-      <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-          <b>Version</b> 3.1.0
-        </div>
-      </footer>
+      </div>
       <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
       </aside>
@@ -324,6 +312,7 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
+    <script src="https://kit.fontawesome.com/51a2bee5af.js" crossorigin="anonymous"></script>
     <script src="{{ asset('js/jquery.min.js')}}"></script>
     <script>
   $.widget.bridge('uibutton', $.ui.button)

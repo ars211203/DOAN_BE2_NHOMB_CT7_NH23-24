@@ -118,6 +118,15 @@
 <body>
     <div class="center">
         <h1>Login</h1>
+        <?php if(Session::has('thongbao')): ?>
+        <h3 style="
+        color: red;
+        margin-left: 30px;
+        ">
+            <?php echo e(Session::get('thongbao')); ?>
+
+        </h3>
+        <?php endif; ?>
         <form method="POST" action="<?php echo e(route('customLogin')); ?>">
             <?php echo csrf_field(); ?>
             <div class="txt_field">

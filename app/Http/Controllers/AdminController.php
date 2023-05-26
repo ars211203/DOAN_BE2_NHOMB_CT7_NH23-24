@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
@@ -17,7 +19,15 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $books = Book::all();
+        $users = User::all();
+        $totalBooks = DB::table('books')->count();
+        $totalUsers = DB::table('users')->count();
+        $totalRating = DB::table('reviews')->sum('rating');
+        $totalReviews = DB::table('reviews')->count();
+        $Result = $totalRating / $totalReviews;
+        $totalViews = DB::table('books')->sum('book_view');
+        return view('admin.index',compact('totalBooks','totalUsers','Result','totalViews'));
         //return view('welcome');
     }
 
@@ -106,7 +116,7 @@ class AdminController extends Controller
                 return redirect()->route('index');
             }
         }
-       return redirect("auth.login")->withSuccess('Tài khoản hoặc mật khẩu không chính xác');
+       return redirect("login")->with('thongbao', 'Tài khoản hoặc mật khẩu không chính xác!');
     }
     public function signOut()
     {

@@ -157,5 +157,5 @@ class IndexController extends Controller
             $email->to('Hope211203@gmail.com',$name);
         });
     }
-
+    
 }
