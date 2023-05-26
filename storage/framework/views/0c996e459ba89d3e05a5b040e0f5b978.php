@@ -1,0 +1,1 @@
+<?php /**PATH G:\Xampp\htdocs\DoAn_BE2_CT7\resources\views/history.blade.php ENDPATH**/ ?>

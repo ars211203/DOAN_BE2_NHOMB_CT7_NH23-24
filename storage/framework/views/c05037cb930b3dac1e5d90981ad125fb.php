@@ -1,0 +1,1 @@
+<h1>hello</h1><?php /**PATH G:\Xampp\htdocs\hope_laravel\Hope_be2\resources\views/role_admin.blade.php ENDPATH**/ ?>
