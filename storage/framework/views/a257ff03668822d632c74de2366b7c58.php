@@ -16,7 +16,7 @@
     <button type="submit"><i class="fa-solid fa-eye-slash"></i></button>
     </form>
     <?php endif; ?>
-    </a></h1>
+    </a></h1>   
     <?php $__currentLoopData = $Section; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <details open>
       <summary><?php echo e($data->sections_name); ?></summary>
