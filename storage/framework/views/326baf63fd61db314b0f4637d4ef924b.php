@@ -46,7 +46,12 @@
   <section id="hero">
     <div class="hero container">
       <div>
-        <h1>Xin chào <?php echo e(Auth::id()); ?>,<span></span></h1>
+        <h1>Xin chào 
+        <?php if(Auth::check()): ?>
+            <?php echo e(Auth::user()->user_fullname); ?>
+
+        <?php endif; ?>
+          ,<span></span></h1>
         <h1>Chào mừng bạn đến với<span></span></h1>
         <h1>Readook <span></span></h1>
         <div class="newlatter">

@@ -7,16 +7,16 @@
     <form action="<?php echo e(route('books.follow')); ?>" method="post">
     <?php echo csrf_field(); ?>
     <input type="hidden" name="book_id" value="<?php echo e($book->id); ?>">
-    <button type="submit"><i class="fa-solid fa-plus"></i></button>
+    <button type="submit"><i class="fa-solid fa-eye"></i></button>
     </form>
     <?php else: ?>
     <form action="<?php echo e(route('unfollow',$book->id)); ?>" method="post">
     <?php echo csrf_field(); ?>
     <input type="hidden" name="book_id" value="<?php echo e($book->id); ?>">
-    <button type="submit"><i class="fa-solid fa-xmark"></i></button>
+    <button type="submit"><i class="fa-solid fa-eye-slash"></i></button>
     </form>
     <?php endif; ?>
-    </a></h1>
+    </a></h1>   
     <?php $__currentLoopData = $Section; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <details open>
       <summary><?php echo e($data->sections_name); ?></summary>
@@ -75,7 +75,7 @@
             <tbody>
             <?php $__currentLoopData = $reviews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $rating): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td><?php echo e($rating->user->id); ?></td>
+                        <td><?php echo e($rating->user->user_fullname); ?></td>
                         <td><?php echo e($rating->rating); ?></td>
                         <td><?php echo e($rating->comment); ?></td>
                         <td><?php echo e($rating->created_at); ?></td>
