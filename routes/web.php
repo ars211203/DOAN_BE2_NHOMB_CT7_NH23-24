@@ -60,27 +60,30 @@ Route::get('passowrd/{id}',[IndexController::class,'change_password'])->name('ch
 Route::post('change-password/{id}', [IndexController::class, 'updatePassword'])->name('update.password');
 Route::get('history',[IndexController::class,'UserReadHistory'])->name('readhistory');
 Route::get('clear-history',function(){
-    return '';
+    abort(404);
 });
 Route::post('clear-history',[IndexController::class,'ClearHistory'])->name('clear.history');
 Route::get('delete-history/{history_id}',function(){
-    return '';
+    abort(404);
 });
 Route::post('delete-history/{history_id}',[IndexController::class,'deleteHistory'])->name('delete.history');
 Route::get('listfollow',[IndexController::class,'listFollow'])->name('list.follow');
 //review
-Route::get('book/{id}/detail',[IndexController::class,'detail'])->name('detail.book');
+Route::get('book/{id}/detail',[IndexController::class,'detail'])->name('detail.book')->where('id', '\d');
+Route::get('book/{slug}/detail',function(){
+    abort(404);
+})->where('slug', '.+');
 Route::post('/books/{book}/reviews', [ReviewsController::class, 'store'])->name('reviews.store');
 //book
 Route::get('search', [IndexController::class, 'search'])->name('search');
 Route::get('books/follow',function(){
-    return '';
+    abort(404);
 });
 Route::get('unfollow/{book_id}',function(){
-    return '';
+    abort(404);
 });
 Route::get('unfollowAll/',function(){
-    return '';
+    abort(404);
 });
 Route::post('books/follow', [IndexController::class, 'followBook'])->name('books.follow');
 Route::post('unfollow/{book_id}',[IndexController::class,'unfollow'])->name('unfollow');
