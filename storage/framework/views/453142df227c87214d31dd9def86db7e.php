@@ -312,6 +312,7 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
+    
     <script src="https://kit.fontawesome.com/51a2bee5af.js" crossorigin="anonymous"></script>
     <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
     <script>

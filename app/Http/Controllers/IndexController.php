@@ -40,12 +40,15 @@ class IndexController extends Controller
         //them lich su doc
         $user_id = Auth::id();
         $book_id = $book->id;
-        $last_read_page = request('last_read_page', 0);
-        $user_read_history = new UserReadHistory;
-        $user_read_history->user_id = $user_id;
-        $user_read_history->book_id = $book_id;
-        $user_read_history->last_read_page = $last_read_page;
-        $user_read_history->save();
+        if(Auth::check()){
+            $last_read_page = request('last_read_page', 0);
+            $user_read_history = new UserReadHistory;
+            $user_read_history->user_id = $user_id;
+            $user_read_history->book_id = $book_id;
+            $user_read_history->last_read_page = $last_read_page;
+            $user_read_history->save();
+        }
+
         //check da follow chua
         $check = false;
         $followed = DB::table('follows')
