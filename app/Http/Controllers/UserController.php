@@ -32,9 +32,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_fullname' => 'required',
+            'user_fullname' => 'required|max:255',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'password' => 'required|min:8',
             'user_image' => 'required',
         ]);
         $data = $request->all();
@@ -92,7 +92,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        $user->delete();
-        return redirect()->route('list.user')->with('thongbao', 'Xóa người dùng thành công');
+        if (!$user) {
+            return redirect()->back()->with('thongbao', 'không tồn tại người dùng');
+        } else {
+            $user->delete();
+            return redirect()->route('list.user')->with('thongbao', 'Xóa người dùng thành công');
+        }
     }
 }

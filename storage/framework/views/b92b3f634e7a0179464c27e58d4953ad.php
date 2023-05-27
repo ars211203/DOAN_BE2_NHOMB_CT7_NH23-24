@@ -3,10 +3,19 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <h3>Quản Chương của sách <?php echo e($book_name); ?></h3>
                 </div>
                 <div class="col-md-6">
+                <?php if(Session::has('thongbao')): ?>
+            <div class="alert alert-success">
+                <?php echo e(Session::get('thongbao')); ?>
+
+            </div>
+            <?php endif; ?>
+            </div>
+
+                <div class="col-md-2">
                     <a href="<?php echo e(route('book.sections.create',$id)); ?>" class="btn btn-primary
                         float-end">Thêm chương mới</a>
                 </div>
