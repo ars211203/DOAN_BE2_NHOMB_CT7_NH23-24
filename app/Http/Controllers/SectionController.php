@@ -33,8 +33,8 @@ class SectionController extends Controller
     public function store(Request $request, $book_id)
     {
         $request->validate([
-            'sections_name' => 'required',
-            'sections_content' => 'required',
+            'sections_name' => 'required|max:255',
+            'sections_content' => 'required|max:5000',
         ]);
         $sections = new Section($request->all());
         $sections->book_id = $book_id;
@@ -80,7 +80,9 @@ class SectionController extends Controller
         $sections = Section::find($id);
         if ($sections) {
             $sections->delete();
+            return redirect()->route('book.sections',['id' => $book_id]);
+        }else{
+            return redirect()->back()->with('thongbao', 'không tồn tại sections');
         }
-        return redirect()->route('book.sections',['id' => $book_id]);
     }
 }

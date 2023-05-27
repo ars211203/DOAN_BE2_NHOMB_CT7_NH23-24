@@ -104,9 +104,13 @@ class BooksController extends Controller
     public function destroy($id)
     {
         $book = Book::find($id);
-        $book->userReadHistories()->delete();
-        $book->delete();
-        return redirect()->route('list.book')->with('thongbao', 'Xóa người dùng thành công');
+        if(!$book){
+            return redirect()->back()->with('thongbao', 'sách không tồn tại');
+        }else{
+            $book->userReadHistories()->delete();
+            $book->delete();
+            return redirect()->route('list.book')->with('thongbao', 'Xóa người dùng thành công');
+        }
     }
     public function complete($id)
     {
