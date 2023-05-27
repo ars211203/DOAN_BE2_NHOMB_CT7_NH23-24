@@ -79,12 +79,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if($user){
-            $request->validate([
-                'user_fullname' => 'required|max:255',
-                'email' => 'required|email|unique:users',
-                'password' => 'required|min:8',
-                'user_image' => 'required',
-            ]);
             $user->update($request->all());
             return redirect()->route('list.user')->with('thongbao', 'Sửa người dùng thành công');
         }
