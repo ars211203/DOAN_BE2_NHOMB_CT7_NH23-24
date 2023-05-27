@@ -106,15 +106,27 @@ class IndexController extends Controller
     }
     public function ClearHistory(){
         $user_id = Auth::id();
-        $user_read_history = UserReadHistory::where('user_id', $user_id)->delete();
-        return redirect()->back()->with('success', 'Đã xóa toàn bộ lịch sử đọc.');
+        $user_read_history = UserReadHistory::where('user_id', $user_id);
+    
+        if ($user_read_history->exists()) {
+            $user_read_history->delete();
+            return redirect()->back()->with('success', 'Đã xóa toàn bộ lịch sử đọc.');
+        } else {
+            return redirect()->back()->with('success', 'Không thể xóa vì không tồn tại');
+        }
     }
     public function deleteHistory($history_id){
         $user_id = Auth::id();
         $history = UserReadHistory::where('user_id', $user_id)
         ->where('id', $history_id)
-        ->delete();
-        return redirect()->back()->with('success', 'Đã xóa');
+        ->first();
+        if($history){
+            $history->delete();
+            return redirect()->back()->with('success', 'Đã xóa');
+        }else{
+            return redirect()->back()->with('success', 'không thể xóa');
+        }
+        
     }
     public function followBook(Request $request)
     {
@@ -141,10 +153,15 @@ class IndexController extends Controller
     }
     public function unfollow($book_id){
         $user_id = Auth::id();
-        follows::where('user_id', $user_id)
+        $follow = follows::where('user_id', $user_id)
         ->where('book_id', $book_id)
-        ->delete();
-        return redirect()->back();
+        ->first();
+        if ($follow) {
+            $follow->delete();
+            return redirect()->back()->with('success', 'Xóa thành công');
+        } else {
+            return redirect()->back()->with('success', 'Không thể xóa');
+        }
     }
     public function unfollowAll(){
         $user_id = Auth::id();
