@@ -25,7 +25,7 @@
           </div>
           <ul>
             <li><a href="{{route('index')}}">Trang chủ</a></li>
-            <li><a href="{{route('list.follow')}}">Theo dõi</a></li>
+            <li><a href="#">Theo dõi</a></li>
             <li><a href="{{route('readhistory')}}" data-after="Projects">Lịch sử đọc</a></li>
             <li><a href="#" data-after="About">Giới thiệu</a></li>
             @if(is_null(Auth::id()))
@@ -42,21 +42,41 @@
       </div>
     </div>
   </section>
+            
 <table class="custom-table">
+<tr>
+  <th>  Thông báo: 
+    @if(Session::has('success'))
+            <div class="alert alert-success">
+                {{Session::get('success')}}
+            </div>
+            @endif
+      </th>
+    </tr>
     <thead>
         <tr>
             <th>Cuốn sách</th>
-            <th>Số trang đã đọc</th>
             <th>Thời gian cập nhật</th>
+            <th>Xóa lịch sử</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($user_read_history as $history)
         <tr>
             <td>{{ $history->book->book_name }}</td>
-            <td>{{ $history->last_read_page }}</td>
             <td>{{ $history->updated_at->format('d/m/Y H:i:s') }}</td>
+            <td>
+            <form method="POST" action="{{ route('delete.history',$history->id) }}">
+                @csrf
+                <button type="submit">Xóa</button>
+            </form>
+            </td>
         </tr>
         @endforeach
+        
     </tbody>
 </table>
+<form method="POST" action="{{ route('clear.history') }}">
+    @csrf
+    <button type="submit">Xóa toàn bộ lịch sử đọc</button>
+</form>

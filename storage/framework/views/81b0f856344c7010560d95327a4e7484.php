@@ -25,7 +25,7 @@
           </div>
           <ul>
             <li><a href="<?php echo e(route('index')); ?>">Trang chủ</a></li>
-            <li><a href="<?php echo e(route('list.follow')); ?>">Theo dõi</a></li>
+            <li><a href="#">Theo dõi</a></li>
             <li><a href="<?php echo e(route('readhistory')); ?>" data-after="Projects">Lịch sử đọc</a></li>
             <li><a href="#" data-after="About">Giới thiệu</a></li>
             <?php if(is_null(Auth::id())): ?>
@@ -42,22 +42,43 @@
       </div>
     </div>
   </section>
+            
 <table class="custom-table">
+<tr>
+  <th>  Thông báo: 
+    <?php if(Session::has('success')): ?>
+            <div class="alert alert-success">
+                <?php echo e(Session::get('success')); ?>
+
+            </div>
+            <?php endif; ?>
+      </th>
+    </tr>
     <thead>
         <tr>
             <th>Cuốn sách</th>
-            <th>Số trang đã đọc</th>
             <th>Thời gian cập nhật</th>
+            <th>Xóa lịch sử</th>
         </tr>
     </thead>
     <tbody>
         <?php $__currentLoopData = $user_read_history; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $history): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
             <td><?php echo e($history->book->book_name); ?></td>
-            <td><?php echo e($history->last_read_page); ?></td>
             <td><?php echo e($history->updated_at->format('d/m/Y H:i:s')); ?></td>
+            <td>
+            <form method="POST" action="<?php echo e(route('delete.history',$history->id)); ?>">
+                <?php echo csrf_field(); ?>
+                <button type="submit">Xóa</button>
+            </form>
+            </td>
         </tr>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        
     </tbody>
 </table>
+<form method="POST" action="<?php echo e(route('clear.history')); ?>">
+    <?php echo csrf_field(); ?>
+    <button type="submit">Xóa toàn bộ lịch sử đọc</button>
+</form>
 <?php /**PATH G:\Xampp\htdocs\DoAnBe_2_Backup\DoAn_BE2_CT7\resources\views/users/readhistory.blade.php ENDPATH**/ ?>
