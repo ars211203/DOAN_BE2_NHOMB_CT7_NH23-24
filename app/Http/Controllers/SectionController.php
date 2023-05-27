@@ -68,12 +68,6 @@ class SectionController extends Controller
     {
         $book = Book::find($id_book);
         $sections = Section::find($id);
-        if($sections &  $book){
-            $request->validate([
-                'sections_name' => 'required|max:255',
-                'sections_content' => 'required|max:5000',
-            ]);
-        }
         $sections->update($request->all());
         return redirect()->route('book.sections',$book);
     }
