@@ -94,6 +94,13 @@ class BooksController extends Controller
     // }
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'book_name' => 'required|string|max:255',
+            'book_image' => 'required|string|max:255',
+            'book_author' => 'required|string|max:255',
+            'book_source' => 'required|string|max:255',
+            'book_description' => 'required|string|max:255',
+        ]);
         $book = Book::find($id);
         $book->update($request->all());
         return redirect()->route('list.book', compact('book'))->with('thongbao', 'cập nhật sách thành công');

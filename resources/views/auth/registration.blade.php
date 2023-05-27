@@ -118,32 +118,33 @@
 <body>
     <div class="center">
         <h1>Đăng ký</h1>
-        <form action="#"method="POST" enctype="multipart/form-data">
-            <div class="txt_field">
-                <input type="text" name="user_fullname" required>
-                <span></span>
-                <label for="">Tên người dùng</label>
-            </div>
-            <div class="txt_field">
-                <input type="email" name="email" required>
-                <span></span>
-                <label for="">Email</label>
-            </div>
-            <div class="txt_field">
-                <input type="password" name="user_password" required>
-                <span></span>
-                <label for="">Password</label>
-            </div>
-            <div class="txt_field">
-                <h5>Ảnh đại diện</h5>
-                <input type="file" name="user_avatar" required>
-                <span></span>
-            </div>
-            <input type="submit" value="login">
-            <div class="link_dangky">
-                Đã có tài khoản <a href="{{route('login')}}">Đăng nhập</a>
-            </div>
-        </form>
+        <form  method="POST" action="{{route('register')}}" enctype="multipart/form-data">
+        @csrf
+        <div class="txt_field">
+            <input type="text" name="user_fullname" required>
+            <span></span>
+            <label for="">Tên người dùng</label>
+        </div>
+        <div class="txt_field">
+            <input type="email" name="email" required>
+            <span></span>
+            <label for="">Email</label>
+        </div>
+        <div class="txt_field">
+            <input type="password" name="password" required>
+            <span></span>
+            <label for="">Password</label>
+        </div>
+        <div class="txt_field">
+            <h5>Ảnh đại diện</h5>
+            <input type="file" name="user_image" required>
+            <span></span>
+        </div>
+        <input type="submit" value="Đăng ký">
+        <div class="link_dangky">
+            Đã có tài khoản <a href="{{ route('login') }}">Đăng nhập</a>
+        </div>
+    </form>
     </div>
 </body>
 </html>

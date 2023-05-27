@@ -118,14 +118,6 @@
 <body>
     <div class="center">
         <h1>Login</h1>
-        @if(Session::has('thongbao'))
-        <h3 style="
-        color: red;
-        margin-left: 30px;
-        ">
-            {{Session::get('thongbao')}}
-        </h3>
-        @endif
         <form method="POST" action="{{ route('customLogin') }}">
             @csrf
             <div class="txt_field">
