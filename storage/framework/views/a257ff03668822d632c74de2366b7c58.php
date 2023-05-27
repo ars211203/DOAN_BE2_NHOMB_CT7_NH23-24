@@ -36,7 +36,8 @@
   <div id="content" style="display: none;">
   <div class="ratingbook">
     <h2>Đánh giá tác phẩm <?php echo e($book->book_name); ?></h2>
-    <form method="POST" action="<?php echo e(route('reviews.store',$book)); ?>">
+    <?php if(auth()->check()): ?>{
+        <form method="POST" action="<?php echo e(route('reviews.store',$book)); ?>">
         <?php echo csrf_field(); ?>
         <input type="hidden" name="book_id" value="<?php echo e($book->id); ?>">
         <input type="hidden" name="user_id" value="<?php echo e(auth()->user()->id); ?>">
@@ -58,6 +59,7 @@
             <button type="submit">Gửi đánh giá</button>
         </div>
     </form>
+    }<?php endif; ?>
 </div>
 
 

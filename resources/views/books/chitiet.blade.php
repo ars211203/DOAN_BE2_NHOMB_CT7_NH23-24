@@ -35,7 +35,8 @@
   <div id="content" style="display: none;">
   <div class="ratingbook">
     <h2>Đánh giá tác phẩm {{$book->book_name}}</h2>
-    <form method="POST" action="{{route('reviews.store',$book)}}">
+    @if(auth()->check()){
+        <form method="POST" action="{{route('reviews.store',$book)}}">
         @csrf
         <input type="hidden" name="book_id" value="{{ $book->id }}">
         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
@@ -57,6 +58,7 @@
             <button type="submit">Gửi đánh giá</button>
         </div>
     </form>
+    }@endif
 </div>
 
 
