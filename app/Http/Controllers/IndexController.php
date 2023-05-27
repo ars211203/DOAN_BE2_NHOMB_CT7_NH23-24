@@ -32,7 +32,6 @@ class IndexController extends Controller
         //hien thi danh gia sach
         $reviews = reviews::where('book_id', $id)->get();
         //dem luot doc
-        $book->increment('book_view');
         //hien tap cua sach
         $Section = Section::where('book_id', $id)->paginate(2);
         //them lich su doc
