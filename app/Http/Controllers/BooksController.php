@@ -52,14 +52,14 @@ class BooksController extends Controller
         }
         $arrBookType = implode(", ",$request->input('book_type'));
         $data['book_type'] = $arrBookType;
-        // $emails = User::pluck('email')->all();
-        // $name = "tất cả người dùng";
-        // $book_name = $data['book_name'];
-        // foreach ($emails as $email) {
-        //     Mail::send('emails.Sendmail', compact('name','book_name'), function($message) use ($email) {
-        //         $message->to($email)->subject('Thông báo sách mới!');
-        //     });
-        // }
+        $emails = User::pluck('email')->all();
+        $name = "tất cả người dùng";
+        $book_name = $data['book_name'];
+        foreach ($emails as $email) {
+            Mail::send('emails.Sendmail', compact('name','book_name'), function($message) use ($email) {
+                $message->to($email)->subject('Thông báo sách mới!');
+            });
+        }
         book::create($data);
         return redirect()->route('list.book')->with('thongbao', 'Thêm sách thành công');
     }
